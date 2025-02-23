@@ -14,7 +14,7 @@ function Navbar() {
       <div className="navbar-start">
         <Link to="/" className="btn btn-ghost normal-case text-xl items-center">
           <Logo width="30px" height="30px" />
-          <p className="sm:block hidden">Starlight</p>
+          <p className="sm:block hidden">Probe Games</p>
         </Link>
       </div>
       <div className="navbar-end gap-2">
