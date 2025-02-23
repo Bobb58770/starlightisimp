@@ -65,7 +65,8 @@ function Settings() {
       <div className="flex flex-wrap gap-4 justify-center">
         <Card title="Themes" description="Change the theme on Probe Games.">
           <select
-            className="select select-bordered w-full bg-purple-600 text-white"
+            className="select select-bordered w-full"
+            style={{ backgroundColor: "rgb(134, 5, 255)", color: "white" }}
             onChange={handleThemeChange}
             value={localStorage.getItem("theme")}
           >
@@ -92,7 +93,8 @@ function Settings() {
           description="Opens Probe Games in an About:blank page."
         >
           <button
-            className="btn bg-purple-600 text-white w-full"
+            className="btn w-full"
+            style={{ backgroundColor: "rgb(134, 5, 255)", color: "white" }}
             onClick={() => window.cloak.aboutBlank()}
           >
             Launch
@@ -104,7 +106,8 @@ function Settings() {
             name="cloak"
             defaultValue=""
             data-cloak-select=""
-            className="select select-bordered w-full bg-purple-600 text-white"
+            className="select select-bordered w-full"
+            style={{ backgroundColor: "rgb(134, 5, 255)", color: "white" }}
             onChange={handleCloakChange}
             value={localStorage.getItem("cloak")}
           >
@@ -124,7 +127,8 @@ function Settings() {
           </select>
           <div className="mt-3">
             <button
-              className="btn bg-purple-600 text-white"
+              className="btn"
+              style={{ backgroundColor: "rgb(134, 5, 255)", color: "white" }}
               onClick={() => window.cloak.reset()}
             >
               Reset Cloak
@@ -145,7 +149,8 @@ function Settings() {
           description="Changes the search engine that Probe Games uses."
         >
           <select
-            className="select select-bordered w-full bg-purple-600 text-white"
+            className="select select-bordered w-full"
+            style={{ backgroundColor: "rgb(134, 5, 255)", color: "white" }}
             onChange={handleSearchEngineChange}
             value={searchEngine}
           >
@@ -166,7 +171,10 @@ function Settings() {
 
 function Card({ title, description, children }) {
   return (
-    <div className="bg-purple-700 p-4 w-[300px] h-[300px] rounded-lg flex flex-col text-white">
+    <div
+      className="p-4 w-[300px] h-[300px] rounded-lg flex flex-col text-white"
+      style={{ backgroundColor: "rgb(134, 5, 255)" }}
+    >
       <div>
         <h2 className="text-2xl font-bold">{title}</h2>
         <p>{description}</p>
