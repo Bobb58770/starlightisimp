@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js + Tailwind</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div id="background"></div> <!-- Background for Three.js -->
+    
+    <main>
+        <h1>Hello, World!</h1>
+        <p>This is a Tailwind-styled page with a Three.js particle background.</p>
+    </main>
+
+    <script>
+        var scene, camera, renderer, particles, geometry, materials = [], parameters, i, h, color, size;
+        var mouseX = 0, mouseY = 0, windowHalfX = window.innerWidth / 2, windowHalfY = window.innerHeight / 2;
+
+        function init() {
+            let WIDTH = window.innerWidth, HEIGHT = window.innerHeight;
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, WIDTH / HEIGHT, 1, 3000);
+            camera.position.z = 1000;
+
+            geometry = new THREE.BufferGeometry();
+            let positions = new Float32Array(1000 * 3);
+
+            for (let i = 0; i < positions.length; i += 3) {
+                positions[i] = (Math.random() * 2000) - 1000;
+                positions[i + 1] = (Math.random() * 2000) - 1000;
+                positions[i + 2] = (Math.random() * 2000) - 1000;
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+            let material = new THREE.PointsMaterial({ color: 0xffffff, size: 3 });
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+
+            renderer = new THREE.WebGLRenderer({ alpha: true });
+            renderer.setSize(WIDTH, HEIGHT);
+            document.getElementById("background").appendChild(renderer.domElement);
+
+            window.addEventListener("resize", onWindowResize);
+            document.addEventListener("mousemove", onMouseMove);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function onMouseMove(event) {
+            mouseX = (event.clientX - windowHalfX) / 2;
+            mouseY = (event.clientY - windowHalfY) / 2;
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            particles.rotation.y += 0.002;
+            camera.position.x += (mouseX - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+            renderer.render(scene, camera);
+        }
+
+        init();
+        animate();
+    </script>
+</body>
+</html>
