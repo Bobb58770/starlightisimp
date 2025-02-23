@@ -60,7 +60,7 @@ function Settings() {
   }, [selectedCloak]);
 
   return (
-    <div className="flex flex-col justify-center items-center flex-wrap gap-3">
+    <div className="flex flex-col justify-center items-center flex-wrap gap-3 min-h-screen">
       <h1 className="text-3xl font-bold mb-3">Settings</h1>
       <BannerAd />
       <div className="flex flex-wrap gap-4 justify-center">
@@ -89,7 +89,7 @@ function Settings() {
         </Card>
         <Card
           title="About:blank"
-          description="Opens Probe Games in an About:blank. page"
+          description="Opens Probe Games in an About:blank page."
         >
           <button
             className="btn btn-primary w-full"
@@ -141,7 +141,7 @@ function Settings() {
         </Card>
         <Card
           title="Search Engine"
-          description="Changes the search engine that Probe Games uses"
+          description="Changes the search engine that Probe Games uses."
         >
           <select
             className="select select-bordered w-full"
@@ -155,6 +155,11 @@ function Settings() {
           </select>
         </Card>
       </div>
+
+      {/* Footer - Now Fully Black */}
+      <footer className="w-full bg-black text-white text-center p-5 mt-10">
+        <p>© {new Date().getFullYear()} Pls Don't Sue!</p>
+      </footer>
     </div>
   );
 }
