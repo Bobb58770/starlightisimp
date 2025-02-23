@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSetRecoilState } from "recoil";
 import Atom from "../lib/Atom.js";
-import { BannerAd, NativeBannerAd } from "../components/Ad.jsx";
 
 function Settings() {
   const setTheme = useSetRecoilState(Atom);
@@ -62,11 +61,11 @@ function Settings() {
   return (
     <div className="flex flex-col justify-center items-center flex-wrap gap-3 min-h-screen">
       <h1 className="text-3xl font-bold mb-3">Settings</h1>
-      <BannerAd />
+
       <div className="flex flex-wrap gap-4 justify-center">
         <Card title="Themes" description="Change the theme on Probe Games.">
           <select
-            className="select select-bordered w-full"
+            className="select select-bordered w-full bg-purple-600 text-white"
             onChange={handleThemeChange}
             value={localStorage.getItem("theme")}
           >
@@ -87,23 +86,25 @@ function Settings() {
             <option value="halloween">Halloween</option>
           </select>
         </Card>
+
         <Card
           title="About:blank"
           description="Opens Probe Games in an About:blank page."
         >
           <button
-            className="btn btn-primary w-full"
+            className="btn bg-purple-600 text-white w-full"
             onClick={() => window.cloak.aboutBlank()}
           >
             Launch
           </button>
         </Card>
+
         <Card title="Cloak" description="Change the cloak on Probe Games.">
           <select
             name="cloak"
             defaultValue=""
             data-cloak-select=""
-            className="select select-bordered w-full"
+            className="select select-bordered w-full bg-purple-600 text-white"
             onChange={handleCloakChange}
             value={localStorage.getItem("cloak")}
           >
@@ -123,13 +124,12 @@ function Settings() {
           </select>
           <div className="mt-3">
             <button
-              className="btn btn-primary"
+              className="btn bg-purple-600 text-white"
               onClick={() => window.cloak.reset()}
             >
               Reset Cloak
             </button>
           </div>
-          {/* Positioning the link at the bottom */}
           <div className="mt-auto text-center pt-3">
             <a
               className="text-xs text-neutral-content opacity-40"
@@ -139,12 +139,13 @@ function Settings() {
             </a>
           </div>
         </Card>
+
         <Card
           title="Search Engine"
           description="Changes the search engine that Probe Games uses."
         >
           <select
-            className="select select-bordered w-full"
+            className="select select-bordered w-full bg-purple-600 text-white"
             onChange={handleSearchEngineChange}
             value={searchEngine}
           >
@@ -156,7 +157,6 @@ function Settings() {
         </Card>
       </div>
 
-      {/* Footer - Now Fully Black */}
       <footer className="w-full bg-black text-white text-center p-5 mt-10">
         <p>© {new Date().getFullYear()} Pls Don't Sue!</p>
       </footer>
@@ -164,13 +164,12 @@ function Settings() {
   );
 }
 
-function Card({ title, description, children, E }) {
+function Card({ title, description, children }) {
   return (
-    <div className="bg-base-300 p-4 w-[300px] h-[300px] rounded-btn flex flex-col flex-wrap">
+    <div className="bg-purple-700 p-4 w-[300px] h-[300px] rounded-lg flex flex-col text-white">
       <div>
         <h2 className="text-2xl font-bold">{title}</h2>
         <p>{description}</p>
-        <p className="text-red-600">{E}</p>
         <div className="justify-end pt-3">{children}</div>
       </div>
     </div>
