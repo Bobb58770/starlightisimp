@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { LuSearch } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
-import { BannerAd, NativeBannerAd } from "../components/Ad";
+import { BannerAd } from "../components/Ad";
 
 function Search() {
   const navigate = useNavigate();
@@ -70,6 +70,7 @@ function Search() {
   function updateTime() {
     setTime(new Date().toLocaleTimeString());
   }
+  
   useEffect(() => {
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
@@ -84,11 +85,13 @@ function Search() {
     navigate("/go");
     sessionStorage.setItem("lpurl", encodedResult);
   }
+
   function handleOnSubmit(e) {
     e.preventDefault();
     sessionStorage.setItem("rawurl", searchTerm);
     handleOnSearch(searchTerm);
   }
+
   async function handleButton(link) {
     const encodedResult = await chemical.encode(link, {
       service: "uv",
@@ -101,7 +104,7 @@ function Search() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center min-h-screen">
       <BannerAd />
       <h1 className="text-7xl font-bold transition-all">{time}</h1>
       <form onSubmit={handleOnSubmit} className="join items-center mt-5">
@@ -119,10 +122,9 @@ function Search() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           type="text"
-          className="input input-bordered input-lg transition-width duration-300 w-[500px] focus:w-[520px] focus:input-primary join-item "
+          className="input input-bordered input-lg transition-width duration-300 w-[500px] focus:w-[520px] focus:input-primary join-item"
           placeholder="Search The web"
-        ></input>
-
+        />
         <button
           className="btn btn-lg btn-primary join-item border-l-0"
           type="submit"
@@ -131,21 +133,22 @@ function Search() {
         </button>
       </form>
       <div className="flex mt-6 flex-wrap justify-center gap-5 w-[700px]">
-        {apps.map((app, index) => {
-          return (
-            <button
-              onClick={() => handleButton(app.link)}
-              key={index}
-              className="btn flex flex-col btn-ghost justify-center items-center h-[100px] w-[100px]"
-            >
-              <div className="flex flex-col justify-center items-center">
-                <img src={`${app.image}`} alt="" className="w-7 mb-3" />
-                {app.name}
-              </div>
-            </button>
-          );
-        })}
+        {apps.map((app, index) => (
+          <button
+            onClick={() => handleButton(app.link)}
+            key={index}
+            className="btn flex flex-col btn-ghost justify-center items-center h-[100px] w-[100px]"
+          >
+            <div className="flex flex-col justify-center items-center">
+              <img src={`${app.image}`} alt="" className="w-7 mb-3" />
+              {app.name}
+            </div>
+          </button>
+        ))}
       </div>
+
+      {/* Fixed Footer Issue */}
+      <div className="mt-10"></div>
     </div>
   );
 }
