@@ -64,7 +64,7 @@ function Settings() {
       <h1 className="text-3xl font-bold mb-3">Settings</h1>
       <BannerAd />
       <div className="flex flex-wrap gap-4 justify-center">
-        <Card title="Themes" description="Change the theme on Starlight.">
+        <Card title="Themes" description="Change the theme on Probe.">
           <select
             className="select select-bordered w-full"
             onChange={handleThemeChange}
@@ -89,7 +89,7 @@ function Settings() {
         </Card>
         <Card
           title="About:blank"
-          description="Opens Starlight in an About:blank. page"
+          description="Opens Probe in an About:blank. page"
         >
           <button
             className="btn btn-primary w-full"
@@ -98,7 +98,7 @@ function Settings() {
             Launch
           </button>
         </Card>
-        <Card title="Cloak" description="Change the cloak on Starlight.">
+        <Card title="Cloak" description="Change the cloak on Probe.">
           <select
             name="cloak"
             defaultValue=""
@@ -141,7 +141,7 @@ function Settings() {
         </Card>
         <Card
           title="Search Engine"
-          description="Changes the search engine that Starlight uses"
+          description="Changes the search engine that Probe Games uses"
         >
           <select
             className="select select-bordered w-full"
